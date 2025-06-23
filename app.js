@@ -23,6 +23,12 @@ const app = express();
 
 app.enable('trust proxy');
 
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout,
+);
+
 app.use(express.json());
 
 app.set('view engine', 'pug');
@@ -89,12 +95,6 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour',
 });
 app.use('/api', limiter);
-
-app.post(
-  '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
-  bookingController.webhookCheckout,
-);
 
 // Body parser, reading data from the body into req.body
 app.use(express.json({ limit: '10kb' }));
