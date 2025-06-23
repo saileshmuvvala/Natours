@@ -5,7 +5,7 @@ const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('../controllers/handlerFactory');
 
-exports.getCheckoutSession = catchAsync(async (req, res, next) => {
+const getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1) Get the currently booked tour
   const tour = await Tour.findById(req.params.tourId);
 
@@ -57,7 +57,7 @@ const createBookingCheckout = async (session) => {
   await Booking.create({ tour, user, price });
 };
 
-exports.webhookCheckout = (req, res, next) => {
+const webhookCheckout = (req, res, next) => {
   const signature = req.headers['stripe-signature'];
   let event;
   try {
@@ -77,6 +77,7 @@ exports.webhookCheckout = (req, res, next) => {
 
 exports.getCheckoutSession = getCheckoutSession;
 exports.webhookCheckout = webhookCheckout;
+
 exports.createBooking = factory.createOne(Booking);
 exports.getBooking = factory.getOne(Booking);
 exports.getAllBookings = factory.getAll(Booking);
