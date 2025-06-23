@@ -75,6 +75,8 @@ exports.webhookCheckout = (req, res, next) => {
   res.status(200).json({ received: true });
 };
 
+exports.getCheckoutSession = getCheckoutSession;
+exports.webhookCheckout = webhookCheckout;
 exports.createBooking = factory.createOne(Booking);
 exports.getBooking = factory.getOne(Booking);
 exports.getAllBookings = factory.getAll(Booking);
