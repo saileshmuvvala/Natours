@@ -42,7 +42,6 @@ The server will start on `http://localhost:3000` or your configured port.
 - MongoDB for data storage  
 - Advanced filtering, sorting, pagination  
 - Image uploading and processing using Multer & Sharp  
-- Stripe payment integration (if implemented)
 
 ## Tech Stack
 
